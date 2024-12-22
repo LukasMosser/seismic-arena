@@ -21,7 +21,7 @@ jobs:
           HF_USERNAME: ${{ secrets.HF_USERNAME }}
         run: |
           # Configure Git
-          git config --global user.email "lukas.mosser@gmail.com"
+          git config --global user.email "porestar@users.noreply.huggingface.co"
           git config --global user.name "LukasMosser"
 
           # Clone the repository
@@ -40,4 +40,4 @@ jobs:
           git commit -m "Update app.py, score_db.py, and requirements.txt"
 
           # Push changes to the remote repository
-          git push --force https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/seismic-arena main
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/seismic-arena main
