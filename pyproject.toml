@@ -15,5 +15,7 @@ dependencies = [
 "torch",
 "torchvision",
 "fastapi",
-"pydantic"
+"pydantic", 
+"scikit-learn", 
+"lightning"
 ]
