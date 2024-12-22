@@ -30,14 +30,15 @@ jobs:
           # Copy files directly into the base folder of the repository
           cp src/app.py seismic-arena/app.py
           cp src/score_db.py seismic-arena/score_db.py
+          cp src/rating.py seismic-arena/rating.py
           cp requirements_hub.txt seismic-arena/requirements.txt
 
           # Change to the repository directory
           cd seismic-arena
 
           # Add and commit changes
-          git add app.py score_db.py requirements.txt
-          git commit -m "Update app.py, score_db.py, and requirements.txt"
+          git add app.py score_db.py rating.py requirements.txt
+          git commit -m "Update app.py, score_db.py, rating.py, and requirements.txt"
 
           # Push changes to the remote repository
           git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/seismic-arena main
