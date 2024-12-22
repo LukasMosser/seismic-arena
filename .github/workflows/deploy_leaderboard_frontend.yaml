@@ -20,13 +20,24 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_USERNAME: ${{ secrets.HF_USERNAME }}
         run: |
+          # Configure Git
           git config --global user.email "lukas.mosser@gmail.com"
           git config --global user.name "LukasMosser"
-          git clone https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/seismic-arena seismic-arena
-          cp src/app.py seismic-arena/src/app.py
-          cp src/score_db.py seismic-arena/src/score_db.py
+
+          # Clone the repository
+          git clone https://huggingface.co/spaces/$HF_USERNAME/seismic-arena seismic-arena
+
+          # Copy files directly into the base folder of the repository
+          cp src/app.py seismic-arena/app.py
+          cp src/score_db.py seismic-arena/score_db.py
           cp requirements_hub.txt seismic-arena/requirements.txt
+
+          # Change to the repository directory
           cd seismic-arena
-          git add src/app.py requirements.txt
-          git commit -m "Update src/app.py and requirements.txt"
+
+          # Add and commit changes
+          git add app.py score_db.py requirements.txt
+          git commit -m "Update app.py, score_db.py, and requirements.txt"
+
+          # Push changes to the remote repository
           git push
