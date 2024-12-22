@@ -22,11 +22,11 @@ jobs:
         run: |
           git config --global user.email "lukas.mosser@gmail.com"
           git config --global user.name "LukasMosser"
-          git clone https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/seismic-arena repo
-          cp src/app.py repo/src/app.py
-          cp src/score_db.py repo/src/score_db.py
-          cp requirements_hub.txt repo/requirements.txt
-          cd repo
+          git clone https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/seismic-arena seismic-arena
+          cp src/app.py seismic-arena/src/app.py
+          cp src/score_db.py seismic-arena/src/score_db.py
+          cp requirements_hub.txt seismic-arena/requirements.txt
+          cd seismic-arena
           git add src/app.py requirements.txt
           git commit -m "Update src/app.py and requirements.txt"
           git push
