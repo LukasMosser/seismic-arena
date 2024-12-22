@@ -40,4 +40,4 @@ jobs:
           git commit -m "Update app.py, score_db.py, and requirements.txt"
 
           # Push changes to the remote repository
-          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/seismic-arena main
+          git push --force https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/seismic-arena main
