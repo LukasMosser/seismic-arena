@@ -4,4 +4,16 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.9"
-dependencies = []
+dependencies = [
+"matplotlib", 
+"numpy",
+"pandas",
+"modal",
+"gradio", 
+"datasets", 
+"albumentations", 
+"torch",
+"torchvision",
+"fastapi",
+"pydantic"
+]
