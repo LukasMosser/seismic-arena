@@ -3,3 +3,7 @@ numpy
 gradio
 datasets
 requests
+modal
+pandas
+fastapi
+pydantic
