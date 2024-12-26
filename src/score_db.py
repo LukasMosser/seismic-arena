@@ -28,9 +28,11 @@ class Winner(str, Enum):
     model_b = "model_b"
     tie = "tie"
 
+
 class Model(str, Enum):
-    porestar_deepfault_unet_baseline_1 = "porestar/deepfault-unet-baseline-1"
-    porestar_deepfault_unet_baseline_2 = "porestar/deepfault-unet-baseline-2"
+    porestar_deepfault_unet_baseline_no_augment = "porestar/deepfault-unet-baseline-no-augment"
+    porestar_deepfault_unet_baseline_weak_augment = "porestar/deepfault-unet-baseline-weak-augment"
+    porestar_deepfault_unet_baseline_strong_augment = "porestar/deepfault-unet-baseline-strong-augment"
 
 class Battle(BaseModel):
     model_a: Model
