@@ -9,7 +9,7 @@ from fastapi import Request, Response
 import modal
 
 from score_db import Model as ModelEnum
-from seisbase.models.unet_model import DeepFaultBaselineModel
+from models.unet_model import DeepFaultBaselineModel
 
 volume = modal.Volume.from_name("model-weights-vol", create_if_missing=True)
 MODEL_DIR = Path("/models")
@@ -48,14 +48,14 @@ class Model:
     def generate_fault_likelihood(self, model, seismic_array: np.ndarray):
         import torch
         from PIL import Image
-        self.seismic_predictor = DeepFaultBaselineModel.from_pretrained(model, cache_dir=MODEL_DIR)
+        self.seismic_predictor = DeepFaultBaselineModel.from_pretrained(model, cache_dir=MODEL_DIR, local_files_only=True)
         self.seismic_predictor.model = self.seismic_predictor.model.float().cuda()  # Convert model weights to float32
         
-
         # transform the image
         seismic_image = self.transformation(image=seismic_array)["image"]
+
         seismic_image = seismic_image.unsqueeze(0).float().cuda()
-        print(seismic_image.min(), seismic_image.max())
+        
         # run the model on GPU
         with torch.inference_mode(), torch.autocast("cuda", dtype=torch.float32):
             self.seismic_predictor.model.eval()
@@ -65,7 +65,6 @@ class Model:
         predicted_prob = predicted_prob.float()
         # convert the output to an image
         predicted_image = predicted_prob[:, 1].squeeze().cpu().numpy().astype(np.float32)
-        print(predicted_image.min(), predicted_image.max())
         predicted_image = Image.fromarray(predicted_image)
 
         return predicted_image
